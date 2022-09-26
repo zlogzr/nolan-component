@@ -2,8 +2,8 @@ import { Button, Select } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
 import { useRef, useState } from 'react'
 
-import NTable from './NTable'
-import { getList } from './apis'
+import { NLayout, NTable } from './components'
+import { getList } from './components/NTable/api'
 
 const { Option } = Select
 
@@ -79,43 +79,58 @@ function App() {
     getData()
   }
   return (
-    <>
-      <Select
-        style={{ width: 120 }}
-        value={params?.status}
-        allowClear
-        placeholder="启用状态"
-        onChange={statusChange}
-      >
-        <Option value="1">启用</Option>
-        <Option value="2">停用</Option>
-      </Select>
-      <Select
-        style={{ width: 120 }}
-        value={params?.expireStatus}
-        allowClear
-        placeholder="有效期"
-        onChange={expireStatusChange}
-      >
-        <Option value="0">正常</Option>
-        <Option value="1">过期</Option>
-      </Select>
-      <Button type="primary" onClick={refresh}>
-        查询
-      </Button>
-      <Button type="primary" onClick={reset}>
-        重置
-      </Button>
-      <NTable
-        ref={ref}
-        columns={columns}
-        listApi={getList}
-        pageName="pageNum"
-        sizeName="pageSize"
-        rowKey="id"
-        othParams={params}
-      />
-    </>
+    <NLayout
+      header={<div>header</div>}
+      sider={<div>sider</div>}
+      content={
+        <div style={{ padding: '16px' }}>
+          <Select
+            style={{ width: 120 }}
+            value={params?.status}
+            allowClear
+            placeholder="启用状态"
+            onChange={statusChange}
+          >
+            <Option value="1">启用</Option>
+            <Option value="2">停用</Option>
+          </Select>
+          <Select
+            style={{ width: 120 }}
+            value={params?.expireStatus}
+            allowClear
+            placeholder="有效期"
+            onChange={expireStatusChange}
+          >
+            <Option value="0">正常</Option>
+            <Option value="1">过期</Option>
+          </Select>
+          <Button type="primary" onClick={refresh}>
+            查询
+          </Button>
+          <Button type="primary" onClick={reset}>
+            重置
+          </Button>
+          <NTable
+            ref={ref}
+            columns={columns}
+            listApi={getList}
+            pageName="pageNum"
+            sizeName="pageSize"
+            rowKey="id"
+            othParams={params}
+          />
+          <NTable
+            ref={ref}
+            columns={columns}
+            listApi={getList}
+            pageName="pageNum"
+            sizeName="pageSize"
+            rowKey="id"
+            othParams={params}
+          />
+        </div>
+      }
+    />
   )
 }
 

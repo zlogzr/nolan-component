@@ -1,0 +1,25 @@
+.n-layout {
+  .n-header {
+    display: flex;
+    height: 50px;
+    justify-content: space-between;
+    padding: 0 24px;
+    background: #343847;
+    line-height: 50px;
+  }
+
+  .n-sider {
+    height: calc(100vh - 50px);
+    padding-bottom: 0;
+
+    .ant-layout-sider-children {
+      overflow: auto;
+      height: calc(100% - 48px);
+    }
+  }
+
+  .n-content {
+    overflow: auto;
+    height: calc(100vh - 50px);
+  }
+}

@@ -8,7 +8,7 @@ interface backResult {
   total: number
 }
 
-interface NTableProps extends TableProps {
+export interface NTableProps extends TableProps {
   listApi: (params?: any) => Promise<backResult>
   othParams?: any
   pageName?: string
